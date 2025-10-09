@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordena la historia de Faraday</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+    background-size: cover;
+    color: #222;
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    background-color: rgba(255,255,255,0.9);
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #000000;
+  }
+
+  h3 {
+    background-color: rgba(255,255,255,0.9);
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #000000;
+  }
+
+  #contenedor {
+    margin-top: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .evento {
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #f7f7f7;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    cursor: grab;
+  }
+
+  .evento:hover {
+    background-color: #eaeaea;
+  }
+
+  .correcto {
+    background-color: #b3ffb3 !important;
+  }
+
+  #mensaje {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.85);
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 8px;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 50px;
+    background-color: #3033ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background-color: #4fb3ff;
+    transform: translateY(-2px);
+  }
+
+  /* Contenedor de los botones finales */
+  .btn-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<h1>Ordena los eventos de la historia de Faraday</h1>
+<h3>Arrastra los elementos para colocarlos en orden cronológico. Cuando termines, haz clic en "Verificar".</h3>
+
+<div id="contenedor"></div>
+<button onclick="verificarOrden()">Verificar</button>
+
+<div id="mensaje"></div>
+
+<!-- Contenedor de botones -->
+<div class="btn-container">
+  <button onclick="location.href='tema1.html'">⬅ Regresar al Tema</button>
+  <button onclick="location.href='temario.html'">📚 Regresar al Temario</button>
+</div>
+
+<script>
+const eventos = [
+  "Misterio de la comunicación rápida [00:04]",
+  "El nacimiento de Michael Faraday (1791)",
+  "El aprendiz de encuadernador",
+  "Encuentro con Humphry Davy",
+  "El descubrimiento de Oersted (1820)",
+  "La invención del motor eléctrico (1821)",
+  "La enfermedad y la pérdida de memoria (1840)",
+  "El concepto de Campo Magnético",
+  "La conexión entre la luz y el magnetismo (1845)",
+  "Las ecuaciones de Maxwell (1860)"
+];
+
+const descripciones = {
+  "Misterio de la comunicación rápida [00:04]": "Se introduce el misterio de la velocidad de la comunicación moderna, que viaja a la velocidad de la luz, contrastando con los métodos antiguos.",
+  "El nacimiento de Michael Faraday (1791)": "Nace Faraday en Londres, un hombre de quien 'nada se esperaba' y que cambiaría el mundo.",
+  "El aprendiz de encuadernador": "Faraday trabaja en un taller de encuadernación, donde desarrolla su fascinación por la ciencia.",
+  "Encuentro con Humphry Davy": "Faraday asiste a una charla de Davy, toma notas y termina siendo su asistente.",
+  "El descubrimiento de Oersted (1820)": "Se descubre la relación entre electricidad y magnetismo gracias a un experimento con una aguja imantada.",
+  "La invención del motor eléctrico (1821)": "Faraday convierte la corriente eléctrica en movimiento mecánico continuo: el primer motor eléctrico.",
+  "La enfermedad y la pérdida de memoria (1840)": "Faraday sufre una enfermedad que le causa pérdida de memoria, aunque aún le esperan grandes logros.",
+  "El concepto de Campo Magnético": "Faraday visualiza líneas invisibles de energía alrededor de los imanes, creando el concepto de campo magnético.",
+  "La conexión entre la luz y el magnetismo (1845)": "Faraday demuestra que la luz puede ser afectada por fuerzas electromagnéticas, unificando conceptos naturales.",
+  "Las ecuaciones de Maxwell (1860)": "Maxwell traduce las ideas de Faraday en ecuaciones matemáticas que explican las ondas electromagnéticas."
+};
+
+// Mezcla aleatoria
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+const contenedor = document.getElementById("contenedor");
+shuffle([...eventos]).forEach((evento, index) => {
+  const div = document.createElement("div");
+  div.className = "evento";
+  div.draggable = true;
+  div.textContent = evento;
+  div.title = descripciones[evento];
+  div.id = "evento-" + index;
+  contenedor.appendChild(div);
+});
+
+// Drag and Drop
+let dragSrcEl = null;
+function handleDragStart(e) {
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/html", this.outerHTML);
+  this.style.opacity = "0.4";
+}
+function handleDragOver(e) {
+  e.preventDefault();
+  this.style.border = "2px dashed #555";
+}
+function handleDrop(e) {
+  e.preventDefault();
+  this.style.border = "";
+  if (dragSrcEl !== this) {
+    this.insertAdjacentHTML("beforebegin", e.dataTransfer.getData("text/html"));
+    contenedor.removeChild(dragSrcEl);
+    agregarEventos();
+  }
+}
+function handleDragEnd() {
+  this.style.opacity = "1";
+  this.style.border = "";
+}
+
+function agregarEventos() {
+  document.querySelectorAll(".evento").forEach(ev => {
+    ev.addEventListener("dragstart", handleDragStart);
+    ev.addEventListener("dragover", handleDragOver);
+    ev.addEventListener("drop", handleDrop);
+    ev.addEventListener("dragend", handleDragEnd);
+  });
+}
+agregarEventos();
+
+function verificarOrden() {
+  const ordenActual = [...document.querySelectorAll(".evento")].map(e => e.textContent.trim());
+  let correctos = 0;
+  ordenActual.forEach((ev, i) => {
+    const elemento = document.querySelectorAll(".evento")[i];
+    if (ev === eventos[i]) {
+      elemento.classList.add("correcto");
+      correctos++;
+    } else {
+      elemento.classList.remove("correcto");
+    }
+  });
+
+  const mensaje = document.getElementById("mensaje");
+  if (correctos === eventos.length) {
+    mensaje.textContent = "🎉 ¡Excelente! Has ordenado toda la historia correctamente.";
+  } else {
+    mensaje.textContent = `Tienes ${correctos} de ${eventos.length} en el orden correcto. ¡Sigue intentando!`;
+  }
+}
+</script>
+
+</body>
+</html>
+

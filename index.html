@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Inicio - 2 parcial</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+    background-size: cover;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #start-card {
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  #start-card h1 {
+    margin-bottom: 16px;
+  }
+
+  #start-card p {
+    margin-bottom: 24px;
+  }
+
+  .btn-start {
+    display: inline-block;
+    padding: 16px 36px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #4c6ef5;
+    color: white;
+    box-shadow: 0 6px 18px rgba(76,110,245,0.28);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .btn-start:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(76,110,245,0.34); }
+  .btn-start:active { transform: translateY(-1px); }
+</style>
+</head>
+<body>
+  <div id="start-card">
+    <h1>Bivenido al segundo parcial</h1>
+    <p>¡Presiona el boton para iniciar!</p>
+    <button class="btn-start" id="start-button">Iniciar</button>
+  </div>
+
+<script>
+const startButton = document.getElementById('start-button');
+
+// Redirecciona a la página del juego en la misma ventana
+startButton.addEventListener('click', () => {
+  window.location.href = 'Temario.html';
+});
+</script>
+</body>
+</html>

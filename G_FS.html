@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juego: Fuera de Serie</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+    background-size: cover;
+    color: #222;
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    background-color: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .columna {
+    width: 45%;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+
+  .item {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f4f4f4;
+    border: 1px solid #999;
+    border-radius: 6px;
+    cursor: grab;
+  }
+
+  .item:hover {
+    background-color: #ddd;
+  }
+
+  .matched {
+    background-color: #b3ffb3 !important;
+    cursor: default;
+  }
+
+  #mensaje {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  }
+
+  /* Contenedor de botones */
+  .btn-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 12px 40px;
+    background-color: #1900ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background-color: #4fb3ff;
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+
+<h1>Relaciona los conceptos del libro "Fuera de Serie"</h1>
+
+<div class="container">
+  <div id="conceptos" class="columna"></div>
+  <div id="frases" class="columna"></div>
+</div>
+
+<div id="mensaje"></div>
+
+<!-- Botones de navegación -->
+<div class="btn-container">
+  <button onclick="location.href='tema1.html'">⬅ Regresar al Tema</button>
+  <button onclick="location.href='temario.html'">📚 Regresar al Temario</button>
+</div>
+
+<script>
+const pares = [
+  { concepto: "Oportunidad", frase: "Las circunstancias adecuadas pueden definir el éxito." },
+  { concepto: "Práctica deliberada", frase: "El talento se perfecciona con horas de entrenamiento constante." },
+  { concepto: "Cultura", frase: "Las tradiciones influyen en cómo las personas aprenden y triunfan." },
+  { concepto: "Acumulación de ventajas", frase: "Pequeñas diferencias iniciales generan grandes resultados." },
+  { concepto: "Éxito", frase: "Es el resultado de preparación, tiempo y entorno." },
+  { concepto: "Inteligencia práctica", frase: "Saber aplicar el conocimiento en la vida cotidiana." },
+  { concepto: "Contexto histórico", frase: "El momento en que nacemos puede influir en nuestras oportunidades." }
+];
+
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+
+const conceptos = shuffle([...pares]);
+const frases = shuffle([...pares]);
+
+const contConceptos = document.getElementById("conceptos");
+const contFrases = document.getElementById("frases");
+
+conceptos.forEach((p, i) => {
+  const div = document.createElement("div");
+  div.className = "item";
+  div.textContent = p.concepto;
+  div.draggable = true;
+  div.id = "concepto-" + i;
+  contConceptos.appendChild(div);
+});
+
+frases.forEach((p, i) => {
+  const div = document.createElement("div");
+  div.className = "item";
+  div.textContent = p.frase;
+  div.id = "frase-" + i;
+  contFrases.appendChild(div);
+});
+
+let seleccionado = null;
+let aciertos = 0;
+
+document.querySelectorAll("#conceptos .item").forEach(item => {
+  item.addEventListener("dragstart", e => {
+    seleccionado = item.textContent;
+  });
+});
+
+document.querySelectorAll("#frases .item").forEach(item => {
+  item.addEventListener("dragover", e => e.preventDefault());
+  item.addEventListener("drop", e => {
+    const frase = item.textContent;
+    const parCorrecto = pares.find(p => p.concepto === seleccionado && p.frase === frase);
+
+    if (parCorrecto) {
+      item.classList.add("matched");
+      const conceptoMatch = [...document.querySelectorAll("#conceptos .item")]
+        .find(c => c.textContent === seleccionado);
+      conceptoMatch.classList.add("matched");
+      item.draggable = false;
+      conceptoMatch.draggable = false;
+      aciertos++;
+      if (aciertos === pares.length) {
+        document.getElementById("mensaje").textContent = "🎉 ¡Has relacionado todos los conceptos correctamente!";
+      }
+    } else {
+      document.getElementById("mensaje").textContent = "❌ Ese concepto no corresponde a esta frase.";
+      setTimeout(() => { document.getElementById("mensaje").textContent = ""; }, 1500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Collage: Por qué fracasan los países</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+      background-size: cover;
+      color: #222;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1.h1 {
+      background-color: rgba(255, 255, 255, 0.85);
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 36px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin-bottom: 40px;
+    }
+
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      width: 80%;
+      max-width: 900px;
+      margin: auto;
+      gap: 8px;
+    }
+
+    .cell {
+      position: relative;
+      background-image: url("fondo.jpeg");
+      background-size: 200% 400%;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 250px;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cell:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+    }
+
+    .cell span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.85);
+      color: #222;
+      padding: 20px;
+      font-size: 16px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .cell span h1 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .cell:hover span {
+      opacity: 1;
+    }
+
+    /* Botones inferiores */
+    .bottom-buttons {
+      margin-top: 50px;
+    }
+
+    .bottom-buttons button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-temario {
+      color: white;
+      background-color: #001eff;
+    }
+
+    .btn-tema {
+      color: white;
+      background-color: #001eff;
+    }
+
+    .btn-temario:hover {
+      background-color: #a8d9af;
+    }
+
+    .btn-tema:hover {
+      background-color: #9fbde6;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="h1">Collage: Por qué fracasan los países<br>de Daron Acemoglu y James Robinson</h1>
+
+  <div class="collage">
+    <!-- Fila 1 -->
+    <div class="cell" style="background-position: 0% 0%;">
+      <span>
+        <h1>La clave está en las instituciones</h1>
+        Los países no fracasan por su geografía o cultura, sino por las instituciones políticas y económicas que crean.
+      </span>
+    </div>
+
+    <div class="cell" style="background-position: 100% 0%;">
+      <span>
+        <h1>Instituciones inclusivas vs. extractivas</h1>
+        Inclusivas: poder distribuido; Extractivas: poder concentrado en élites.
+      </span>
+    </div>
+
+    <!-- Fila 2 -->
+    <div class="cell" style="background-position: 0% 33.33%;">
+      <span>
+        <h1>El papel de la política</h1>
+        Poder concentrado genera pobreza; poder distribuido fomenta instituciones inclusivas.
+      </span>
+    </div>
+
+    <div class="cell" style="background-position: 100% 33.33%;">
+      <span>
+        <h1>Círculos virtuosos y viciosos</h1>
+        Instituciones inclusivas: innovación y prosperidad; extractivas: corrupción y estancamiento.
+      </span>
+    </div>
+
+    <!-- Fila 3 -->
+    <div class="cell" style="background-position: 0% 66.66%;">
+      <span>
+        <h1>Importancia de las coyunturas críticas</h1>
+        Eventos históricos crean oportunidades; el éxito depende de instituciones inclusivas o élites resistentes.
+      </span>
+    </div>
+
+    <div class="cell" style="background-position: 100% 66.66%;">
+      <span>
+        <h1>El papel de la destrucción creativa</h1>
+        La innovación surge cuando las élites no bloquean cambios; las extractivas frenan el progreso.
+      </span>
+    </div>
+
+    <!-- Fila 4 -->
+    <div class="cell" style="background-position: 0% 100%;">
+      <span>
+        <h1>Conclusión central</h1>
+        El desarrollo sostenible requiere instituciones políticas inclusivas y pluralismo.
+      </span>
+    </div>
+
+    <div class="cell" style="background-position: 100% 100%;">
+      <span>
+        <h1>Reflexión</h1>
+        Las instituciones inclusivas, no la geografía, son la clave del éxito; las extractivas causan el fracaso económico.
+      </span>
+    </div>
+  </div>
+
+  <!-- Botones inferiores -->
+  <div class="bottom-buttons">
+    <button class="btn-tema" onclick="window.location.href='tema3.html'">⬅️ Volver al Tema</button>
+    <button class="btn-temario" onclick="window.location.href='temario.html'">📚 Ir al Temario</button>
+  </div>
+
+</body>
+</html>

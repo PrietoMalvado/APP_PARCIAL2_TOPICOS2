@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temario - Fuera de Serie</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+    background-size: cover;
+    color: #222;
+    margin: 0;
+    padding: 40px;
+  }
+
+  h1 {
+    text-align: center;
+    background-color: rgba(255,255,255,0.9);
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  .temario-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+  }
+
+  .card {
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .card p {
+    font-size: 14px;
+    margin-bottom: 18px;
+    min-height: 40px;
+  }
+
+  .card button {
+    padding: 10px 16px;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(76,110,245,0.3);
+  }
+
+  @media (max-width: 600px) {
+    .temario-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Temario - Segundo parcial</h1>
+
+<div class="temario-container">
+  <div class="card">
+    <h2>Tema 1: Michael Faraday</h2>
+    <p>Michael Faraday y como consiguio el exito en su vida.</p>
+    <button onclick="location.href='tema1.html'">Ir al Tema :9</button>
+  </div>
+
+  <div class="card">
+    <h2>Tema 2: Fuera de serie.</h2>
+    <p>Desafía la creencia popular de que el éxito extraordinario se debe únicamente al talento y al esfuerzo individual.</p>
+    <button onclick="location.href='tema2.html'">Ir al Tema :b</button>
+  </div>
+
+  <div class="card">
+    <h2>Tema 3: ¿Por que los paises fracasan?</h2>
+    <p>Es una obra fundamental que desafía las teorías tradicionales sobre la desigualdad global.</p>
+    <button onclick="location.href='tema3.html'">Ir al Tema :o</button>
+  </div>
+
+  <div class="card">
+    <h2>Tema 4: El poder ilimitado de los consorcios digitales</h2>
+    <p>Explora la inmensa influencia, las prácticas económicas y las amenazas a la democracia que plantean las principales corporaciones tecnológicas del mundo.</p>
+    <button onclick="location.href='tema4.html'">Ir al Tema :D</button>
+  </div>
+
+  <div class="card">
+    <h2>Tema 5: Reflexion</h2>
+    <p>Breve reflexion sobre los temas antes vistos</p>
+    <button onclick="location.href='tema5.html'">Ir al Tema :p</button>
+  </div>
+</div>
+</body>
+</html>
