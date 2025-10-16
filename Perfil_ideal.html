@@ -184,6 +184,32 @@
     margin-top: 10px;
   }
 
+    /* Div de botones */
+  .btn-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-container button {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background-color: #4c6ef5;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .btn-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(76,110,245,0.3);
+  }
+
   /* Responsive */
   @media (max-width: 1000px) {
     #main {
@@ -244,6 +270,11 @@
   <h2>Porcentaje de éxito:</h2>
   <div id="exito">0%</div>
 </div>
+
+  <!-- Div con los dos botones -->
+  <div class="btn-container">
+    <button onclick="location.href='temario.html'">⬅ Regresar al Temario</button>
+  </div>
 
 <script>
 const extras = document.getElementById('extras');
