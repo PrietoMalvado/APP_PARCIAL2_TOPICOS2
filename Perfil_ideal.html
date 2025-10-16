@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil ideal</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background: url('https://i.pinimg.com/originals/23/01/90/2301906292382441ccf0e15d6b1e1df8.jpg') repeat center center;
+    background-size: cover;
+    color: #222;
+    margin: 0;
+    padding: 40px;
+    box-sizing: border-box;
+  }
+
+  .titular {
+    background-color: rgba(255,255,255,0.9);
+    padding: 30px 40px;
+    border-radius: 10px;
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto 40px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+  .titular h1 {
+    font-family: 'Libre Baskerville', 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #000;
+  }
+
+  .titular h3 {
+    font-family: 'Libre Baskerville', 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-top: 10px;
+    color: #333;
+    text-transform: none;
+  }
+
+  #main {
+    display: flex;
+    flex-direction: row; /* horizontal */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background-color: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    flex: 1; /* cada card ocupa el mismo espacio horizontal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    display: block;
+    margin: 15px 0;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  /* Personaje */
+  #personaje {
+    width: 150px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  #cara {
+    width: 50%;
+    aspect-ratio: 1/1;
+    background-color: #f0c987;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .ojo {
+    width: 15%;
+    height: 15%;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+  }
+
+  .ojo.izq { left: 25%; }
+  .ojo.der { right: 25%; }
+
+  #boca {
+    width: 30%;
+    height: 5%;
+    background-color: red;
+    border-radius: 0 0 50% 50%;
+    position: absolute;
+    bottom: 20%;
+    left: 35%;
+  }
+
+  #torso {
+    width: 60%;
+    height: 40%;
+    background-color: blue;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .brazo {
+    width: 20%;
+    height: 40%;
+    background-color: #f0c987;
+    position: absolute;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  .brazo.izq { left: -20%; }
+  .brazo.der { right: -20%; }
+
+  .pierna {
+    width: 20%;
+    height: 35%;
+    background-color: #444;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px;
+  }
+
+  .pierna.izq { left: 15%; }
+  .pierna.der { right: 15%; }
+
+  .pie {
+    width: 100%;
+    height: 25%;
+    background-color: #222;
+    border-radius: 10px 10px 50% 50%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  #extras {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    line-height: 1.6; /* mejor espaciado entre líneas */
+  }
+
+  #exito-wrapper {
+    background-color: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+  #exito {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    #main {
+      flex-direction: column; /* se apilan verticalmente */
+      align-items: center;
+    }
+    .card {
+      width: 90%;
+    }
+    #personaje {
+      width: 120px;
+      height: 240px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="titular">
+  <h1>Perfil Ideal</h1>
+  <h3>Usa los sliders para ajustar riqueza, educación, contexto y empresas. El personaje mostrará elementos visuales según los valores.</h3>
+</div>
+
+<div id="main">
+  <div class="card" id="atributos">
+    <h2>Atributos</h2>
+    <label>Riqueza: <input type="range" id="riqueza" min="1" max="10" value="5"></label>
+    <label>Educación: <input type="range" id="educacion" min="1" max="10" value="5"></label>
+    <label>Contexto: <input type="range" id="contexto" min="1" max="10" value="5"></label>
+    <label>Empresas: <input type="range" id="empresas" min="1" max="10" value="5"></label>
+    <label>Familia: <input type="range" id="familia" min="1" max="10" value="5"></label>
+  </div>
+
+  <div class="card">
+    <h2>Personaje</h2>
+    <div id="personaje">
+      <div id="cara">
+        <div class="ojo izq"></div>
+        <div class="ojo der"></div>
+        <div id="boca"></div>
+      </div>
+      <div id="torso">
+        <div class="brazo izq"></div>
+        <div class="brazo der"></div>
+        <div class="pierna izq"><div class="pie"></div></div>
+        <div class="pierna der"><div class="pie"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Extras</h2>
+    <div id="extras"></div>
+  </div>
+</div>
+
+<div id="exito-wrapper">
+  <h2>Porcentaje de éxito:</h2>
+  <div id="exito">0%</div>
+</div>
+
+<script>
+const extras = document.getElementById('extras');
+const exitoDiv = document.getElementById('exito');
+
+function actualizarPersonaje() {
+  const riqueza = parseInt(document.getElementById('riqueza').value);
+  const educacion = parseInt(document.getElementById('educacion').value);
+  const contexto = parseInt(document.getElementById('contexto').value);
+  const empresas = parseInt(document.getElementById('empresas').value);
+  const familia = parseInt(document.getElementById('familia').value);
+
+  let items = [];
+
+  if (riqueza >= 8) items.push('🏰 🚗 💎 Varias casas, coches y propiedades');
+  else if (riqueza >= 5) items.push('🏠 🚙 Casa propia y coche personal');
+  else items.push('🏚️ Casa rentada / no propia');
+
+  if (educacion >= 8) items.push('🎓 📚 Educación formal');
+  else if (educacion >= 5) items.push('📖 Educación no formal');
+  else items.push('✏️ Educación informal');
+
+  if (contexto >= 8) items.push('🌆 🌳 Vivir en una zona residencial');
+  else if (contexto >= 5) items.push('🏘️ Vivir en ciudad');
+  else items.push('🌄 Vivir en zonas poco pobladas');
+
+  if (empresas >= 8) items.push('💼 🏢 💰 Varias empresas');
+  else if (empresas >= 5) items.push('💼 🏬 Emprendimiento / autoempleado');
+  else items.push('👜 Trabajo');
+
+  if (familia >= 8) items.push('👪💰👑 Familia clase alta');
+  else if (familia >= 5) items.push('👪💸📈 Familia clase media');
+  else items.push('👪〽💀 Familia clase baja');
+
+  extras.innerHTML = items.join('<br>');
+
+  const promedio = Math.round((riqueza + educacion + contexto + empresas + familia) / 5 * 10);
+  exitoDiv.textContent = `${promedio}%`;
+
+  if (promedio <= 40) exitoDiv.style.color = 'red';
+  else if (promedio <= 70) exitoDiv.style.color = 'orange';
+  else exitoDiv.style.color = 'green';
+}
+
+document.querySelectorAll('input[type="range"]').forEach(input => {
+  input.addEventListener('input', actualizarPersonaje);
+});
+
+actualizarPersonaje();
+</script>
+
+</body>
+</html>
